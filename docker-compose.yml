@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+
+  wireguard_dashboard:
+   build:
+     context: .
+   image: wireguard_dashboard 
+   container_name: wireguard_dashboard
+   ports: 
+    - 51820:51820
+    - 10086:10086
+   volumes:
+    - ./img:/home/app/img
+    - ./src:/home/app/src
+   working_dir: /home/app/src
+   command: >
+      sh -c "/home/app/env.sh &&
+             sleep 5 &&
+             /home/app/src/wgd.sh debug &&
+             sleep infinity"
+   networks:
+    - wireguard_network
+   restart: "always"
+
+
+ 
+networks:
+ wireguard_network:
+
