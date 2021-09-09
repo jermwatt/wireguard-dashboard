@@ -23,8 +23,5 @@ services:
     - wireguard_network
    restart: "always"
 
-
- 
 networks:
  wireguard_network:
-
