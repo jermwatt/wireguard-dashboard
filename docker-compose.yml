@@ -8,8 +8,8 @@ services:
    image: wireguard_dashboard 
    container_name: wireguard_dashboard
    ports: 
-    - 51820:51820
-    - 10086:10086
+    - 51820:51820 # wireguard port
+    - 10086:10086 # wireguard dashboard port
    volumes:
     - ./img:/home/app/img
     - ./src:/home/app/src
@@ -22,6 +22,8 @@ services:
    networks:
     - wireguard_network
    restart: "always"
+   cap_add:
+     - NET_ADMIN
 
 networks:
  wireguard_network:
